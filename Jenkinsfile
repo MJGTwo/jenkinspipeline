@@ -4,11 +4,6 @@ pipeline {
       maven 'localMaven'
       jdk 'localJDK'
     }
-    parameters {
-         string(name: 'tomcat_dev', defaultValue: 'localhost:8090', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: 'localhost:9090', description: 'Production Server')
-    }
-
     triggers {
          pollSCM('* * * * *') // Polling Source Control
      }
@@ -27,7 +22,7 @@ stages{
         }
         stage('Deploy to Staging'){
           steps {
-            build job: 'Deploy-to-staging'
+            build job: 'deploy-to-staging'
           }
         }
 
@@ -37,7 +32,7 @@ stages{
               input message: 'Approve PRODUCTION deployment?'
             }
 
-            build job: 'Deploy-to-Prod'
+            build job: 'deploy-to-prod'
           }
           post {
             success {
