@@ -18,7 +18,7 @@ pipeline {
        parallel{
          stage('Deploy to Staging'){
            steps {
-             sh 'scp -i /Users/michaelgardner/dev/test/jenkinspipe/ec2/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps'
+             sh "scp -i /Users/michaelgardner/dev/test/jenkinspipe/ec2/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
            }
          }
 
